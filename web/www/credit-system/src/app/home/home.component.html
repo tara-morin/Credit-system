@@ -1,0 +1,40 @@
+
+<main class="main">
+  <div class="content container">
+    <div *ngIf="errorMessage" class="error">{{ errorMessage }}
+    </div>
+    <div *ngIf="!userSet">
+      <p class="instruction">Enter your name here:</p>
+      <input class="input" type="text" [(ngModel)]="username_input"/>
+      <input class="input" type="text" [(ngModel)]="password_input"/>
+      <button (click)="insertUser()">Submit</button>
+    </div>
+    <div *ngIf="userSet">
+      Hello, {{user}}
+    </div>
+    <div *ngIf="userSet">
+      <p class="instruction">Enter a item and its price here:</p>
+      <input class="item_input" type="text" [(ngModel)]="item_input"/>
+      <input class="price_input" type="number" [(ngModel)]="price_input"/>
+      <button (click)="insertitem()">Submit</button>
+    </div>
+    <div class="items">
+      <p>items</p>
+      <div class= "row" *ngFor="let item of items">
+        <div class="name col-4">
+          {{item.name}}
+        </div>
+        <div class="price col-4">
+          {{item.price}}
+        </div>
+        <div class="update-btn">
+          <button class="btn"
+                  (click)="item.used ? deleteUserfromitem(item.name) : addUsertoitem(item.name)">
+            {{ item.used ? 'added' : 'add' }}
+          </button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</main>

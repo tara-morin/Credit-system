@@ -1,0 +1,12 @@
+DROP TABLE IF EXISTS items_in_group CASCADE;
+DROP TABLE IF EXISTS items_used CASCADE;
+DROP TABLE IF EXISTS items CASCADE;
+DROP TABLE IF EXISTS people_in_group CASCADE;
+DROP TABLE IF EXISTS groups_list CASCADE;
+DROP TABLE IF EXISTS people CASCADE;
+create table people (user_id SERIAL PRIMARY KEY, name VARCHAR, password VARCHAR);
+create table groups_list (group_id SERIAL PRIMARY KEY, name VARCHAR);
+create table people_in_group (entry_id SERIAL PRIMARY KEY, user_id INT REFERENCES people(user_id) ON DELETE CASCADE, group_id INT REFERENCES groups_list(group_id) ON DELETE CASCADE);
+create table items (item_id SERIAL PRIMARY KEY, name VARCHAR, price NUMERIC(10, 2));
+create table items_used (entry_id SERIAL PRIMARY KEY, user_id INT REFERENCES people(user_id) ON DELETE CASCADE, item_id INT REFERENCES items(item_id) ON DELETE CASCADE);
+create table items_in_group (entry_id SERIAL PRIMARY KEY, item_id INT REFERENCES items(item_id) ON DELETE CASCADE, group_id INT REFERENCES groups_list(group_id) ON DELETE CASCADE);
