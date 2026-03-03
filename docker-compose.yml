@@ -9,8 +9,8 @@ services:
     ports:
       - 15432:5432
     environment:
-      POSTGRES_USER: localuser
-      POSTGRES_PASSWORD: cs4640LocalUser!
+      POSTGRES_USER: tara-morin
+      POSTGRES_PASSWORD: 1234!
       POSTGRES_DB: example
       TZ: "America/New_York"
     volumes:
