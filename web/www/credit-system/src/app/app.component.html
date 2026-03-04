@@ -1,7 +1,10 @@
 <div>
-<ul>
-    <li><a routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a></li>
-    <li><a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Login</a></li>
+
+  <div *ngIf="onMainPage">
+  <ul>
+      <li><a routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a></li>
+      <li><a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Login</a></li>
   </ul>
 <router-outlet></router-outlet>
-</div>>
+  </div>
+</div>
