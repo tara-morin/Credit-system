@@ -4,3 +4,14 @@ angular-compiler.db
 angular-compiler.db-lock
 web/www/credit-system/.angular/
 web/www/credit-system/dist/
+web/www/credit-system/dist/credit-system/server/assets-chunks/index_server_html.mjs
+web/www/credit-system/dist/credit-system/browser/index.csr.html
+web/www/credit-system/dist/credit-system/server/assets-chunks/index_server_html.mjs
+web/www/credit-system/dist/credit-system/server/assets-chunks/index_csr_html.mjs
+web/www/credit-system/dist/credit-system/server/server.mjs
+web/www/credit-system/dist/credit-system/server/main.server.mjs
+web/www/credit-system/dist/credit-system/server/index.server.html
+web/www/credit-system/dist/credit-system/server/chunk-MP5ALJVI.mjs
+web/www/credit-system/dist/credit-system/server/angular-app-manifest.mjs
+web/www/credit-system/dist/credit-system/browser/login/index.html
+web/www/credit-system/dist/credit-system/browser/home/index.html
