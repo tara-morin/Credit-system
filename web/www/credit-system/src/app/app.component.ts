@@ -14,14 +14,14 @@ export class AppComponent {
   onMainPage: boolean = true;
 
   constructor(private router: Router){
-    this.onMainPage = this.router.url == '';
+    // this.onMainPage = this.router.url == '';
 
-    //checks for navigation end- when the navigation to a new page has finished- to see what the route is
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(() => {
-        this.onMainPage = this.router.url == '';
-      });
+    // //checks for navigation end- when the navigation to a new page has finished- to see what the route is
+    // this.router.events
+    //   .pipe(filter(event => event instanceof NavigationEnd))
+    //   .subscribe(() => {
+    //     this.onMainPage = this.router.url == '';
+    //   });
   }
 
 }

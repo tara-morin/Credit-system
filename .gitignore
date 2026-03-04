@@ -2,5 +2,5 @@ angular.json
 .tsbuildinfo
 angular-compiler.db
 angular-compiler.db-lock
-web/www/credit-system/.angular
-web/www/credit-system/dist
+web/www/credit-system/.angular/
+web/www/credit-system/dist/
