@@ -19,13 +19,11 @@ export class AppComponent implements OnInit {
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
         this.onMainPage = event.url === '/';
-        this.router_link = event.url;
       });
   }
 
   ngOnInit() {
     this.onMainPage = this.router.url === '/';
-    this.router_link = this.router.url;
   }
 
 }
