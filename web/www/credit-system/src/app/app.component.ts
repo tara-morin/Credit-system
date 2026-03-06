@@ -1,4 +1,4 @@
-import { Component,  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
@@ -9,19 +9,23 @@ import { CommonModule } from '@angular/common';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   onMainPage: boolean = true;
-
+  router_link: string = 'hello';
   constructor(private router: Router){
-    this.onMainPage = this.router.url == '';
-
     //checks for navigation end- when the navigation to a new page has finished- to see what the route is
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(() => {
-        this.onMainPage = this.router.url == '';
+      .subscribe((event: NavigationEnd) => {
+        this.onMainPage = event.url === '/';
+        this.router_link = event.url;
       });
+  }
+
+  ngOnInit() {
+    this.onMainPage = this.router.url === '/';
+    this.router_link = this.router.url;
   }
 
 }
