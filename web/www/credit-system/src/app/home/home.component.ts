@@ -81,7 +81,7 @@ export class HomeComponent {
     const jsonData = JSON.stringify(postData);
     this.errorMessage = "";
     console.log(jsonData);
-    this.http.post('http://localhost:8080/credit-system/public/backend.php?action=insertitem', jsonData, {
+    this.http.post('http://localhost:8080/credit-system/public/item_logic.php?action=insertitem', jsonData, {
       headers: {
         'Content-Type': 'application/json'
       }
@@ -106,7 +106,7 @@ export class HomeComponent {
       item_name : name,
       user : this.user
     };
-    this.http.post('http://localhost:8080/credit-system/public/backend.php?action=addUserToitem',postData,{
+    this.http.post('http://localhost:8080/credit-system/public/item_logic.php?action=addUserToitem',postData,{
       headers: {
         'Content-Type': 'application/json'
       }
@@ -131,7 +131,7 @@ deleteUserfromitem(name: string): void{
     item_name : name,
     user : this.user
   };
-  this.http.post('http://localhost:8080/credit-system/public/backend.php?action=deleteUserfromitem',postData,{
+  this.http.post('http://localhost:8080/credit-system/public/item_logic.php?action=deleteUserfromitem',postData,{
     headers: {
       'Content-Type': 'application/json'
     }
