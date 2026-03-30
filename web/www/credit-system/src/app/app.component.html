@@ -1,9 +1,17 @@
 <div>
-  <div *ngIf="onMainPage">
-  <ul>
+  <!-- Nav bar: only when logged in -->
+  <nav *ngIf="auth.isLoggedIn">
+    <ul>
       <li><a routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a></li>
-      <li><a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Login</a></li>
-  </ul>
+    </ul>
+  </nav>
+
+  <!-- Landing page: main route, not logged in -->
+  <div *ngIf="onMainPage && !auth.isLoggedIn">
+    <h1>Welcome</h1>
+    <button routerLink="/login">Login</button>
+    <button>Sign Up</button>
   </div>
-<router-outlet></router-outlet>
+
+  <router-outlet></router-outlet>
 </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -12,18 +13,23 @@ import { CommonModule } from '@angular/common';
 export class AppComponent implements OnInit {
 
   onMainPage: boolean = true;
-  router_link: string = 'hello';
-  constructor(private router: Router){
-    //checks for navigation end- when the navigation to a new page has finished- to see what the route is
+
+  constructor(private router: Router, public auth: AuthService) {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
         this.onMainPage = event.url === '/';
+        if (this.onMainPage && this.auth.isLoggedIn) {
+          this.router.navigate(['/home']);
+        }
       });
   }
 
   ngOnInit() {
     this.onMainPage = this.router.url === '/';
+    if (this.onMainPage && this.auth.isLoggedIn) {
+      this.router.navigate(['/home']);
+    }
   }
 
 }
