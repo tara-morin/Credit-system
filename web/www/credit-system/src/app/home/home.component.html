@@ -3,16 +3,10 @@
   <div class="content container">
     <div *ngIf="errorMessage" class="error">{{ errorMessage }}
     </div>
-    <div *ngIf="!userSet">
-      <p class="instruction">Enter your name here:</p>
-      <input class="input" type="text" [(ngModel)]="username_input"/>
-      <input class="input" type="text" [(ngModel)]="password_input"/>
-      <button (click)="insertUser()">Submit</button>
-    </div>
-    <div *ngIf="userSet">
+    <div>
       Hello, {{user}}
     </div>
-    <div *ngIf="userSet">
+    <div>
       <p class="instruction">Enter a item and its price here:</p>
       <input class="item_input" type="text" [(ngModel)]="item_input"/>
       <input class="price_input" type="number" [(ngModel)]="price_input"/>

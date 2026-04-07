@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   private readonly KEY = 'isLoggedIn';
   private readonly USER_KEY = 'username';
+  loginError: string = '';
 
   get isLoggedIn(): boolean {
     return localStorage.getItem(this.KEY) === 'true';

@@ -42,21 +42,50 @@ try {
             $user = $passResult[0];
             $message = 'logged in';
         } else {
-            // Insert new user
-            $insertQuery = "INSERT INTO people (name, password) VALUES ($1, $2) RETURNING user_id, name, password";
-            $insertResult = $db->query($insertQuery, $name, $pass);
-    
-            if (!$insertResult || count($insertResult) === 0) {
-                throw new Exception('SQL error: Failed to insert user into "people" table.');
-            }
-    
-            $user = $insertResult[0];
-            $message = 'new user created';
+            throw new Exception('user not found');
         }
     
         echo json_encode([
             'result' => 'success',
             'message' => $message,
+            'data' => [
+                'id' => $user['user_id'],
+                'name' => $user['name'],
+                'password' => $user['password'],
+            ]
+        ]);
+    }elseif ($action === "signUp" && $_SERVER['REQUEST_METHOD'] === 'POST') {
+        $inputData = json_decode(file_get_contents('php://input'), true);
+
+        if (!isset($inputData['name']) || empty(trim($inputData['name']))) {
+            throw new Exception('Missing or empty required field: name.');
+        }
+        if (!isset($inputData['password']) || empty(trim($inputData['password']))) {
+            throw new Exception('Missing or empty required field: password.');
+        }
+
+        $name = trim($inputData['name']);
+        $pass = trim($inputData['password']);
+
+        // Check if username is already taken
+        $checkQuery = "SELECT * FROM people WHERE name = $1";
+        $existingUser = $db->query($checkQuery, $name);
+
+        if ($existingUser && count($existingUser) > 0) {
+            throw new Exception('username already taken');
+        }
+
+        $insertQuery = "INSERT INTO people (name, password) VALUES ($1, $2) RETURNING user_id, name, password";
+        $insertResult = $db->query($insertQuery, $name, $pass);
+
+        if (!$insertResult || count($insertResult) === 0) {
+            throw new Exception('SQL error: Failed to insert user into "people" table.');
+        }
+
+        $user = $insertResult[0];
+        echo json_encode([
+            'result' => 'success',
+            'message' => 'new user created',
             'data' => [
                 'id' => $user['user_id'],
                 'name' => $user['name'],

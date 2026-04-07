@@ -9,8 +9,9 @@
   <!-- Landing page: main route, not logged in -->
   <div *ngIf="onMainPage && !auth.isLoggedIn">
     <h1>Welcome</h1>
+    <div *ngIf="auth.loginError" style="color: red;">{{ auth.loginError }}</div>
     <button routerLink="/login">Login</button>
-    <button>Sign Up</button>
+    <button routerLink="/signup">Sign Up</button>
   </div>
 
   <router-outlet></router-outlet>

@@ -22,6 +22,9 @@ export class AppComponent implements OnInit {
         if (this.onMainPage && this.auth.isLoggedIn) {
           this.router.navigate(['/home']);
         }
+        if (!this.onMainPage) {
+          this.auth.loginError = '';
+        }
       });
   }
 

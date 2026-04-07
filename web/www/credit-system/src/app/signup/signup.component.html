@@ -1,0 +1,9 @@
+<main class="main">
+  <div class="content container">
+    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+    <p class="instruction">Enter your name here:</p>
+    <input class="input" type="text" [(ngModel)]="username_input"/>
+    <input class="input" type="password" [(ngModel)]="password_input"/>
+    <button (click)="signUp()">Sign Up</button>
+  </div>
+</main>
